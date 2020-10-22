@@ -135,7 +135,10 @@ if __name__ == '__main__':
             player = input("Would you like to play as Aragorn, Gimly or Legolas?")
         
     
-    attacked = input("Who would you like to attack? (Choose from Aragorn, Gimly or Legolas.)")      
+    def attack_input():
+        a = input("Who would you like to attack? (Choose from Aragorn, Gimly or Legolas.)")
+        return a
+    attacked = attack_input()
     while attacked != Aragorn and attacked != Gimly and attacked != Legolas:
         if attacked in ["Aragorn", "aragorn", "A", "a"]:
             attacked = Aragorn
@@ -159,8 +162,8 @@ if __name__ == '__main__':
 #make attack on player specified in input statement at program entry point.
         player.attack(attacked)
         if attacked.status == "dead":
-            print("From 'Player.attack' - Attacking this character will only make your sword harder to clean "\
-                "because they are already dead! Choose another.")
+#            print("From 'Player.attack' - Attacking this character will only make your sword harder to clean "\
+#                 "because they are already dead! Choose another.")
             print("test 1")
         if attacked.health <= 0:
             attacked.status = "dead"
