@@ -21,8 +21,7 @@ class Discipline():
             self.discipline_dict = theif_dict
             self.attack_mod = theif_dict["attack_mod"]
             self.defend_mod = theif_dict["defend_mod"]
-            self.escape_mod = theif_dict["escape_mod"]
-            
+            self.escape_mod = theif_dict["escape_mod"]            
         elif discipline == "Knight":
             self.discipline_dict = knight_dict
             self.attack_mod = knight_dict['attack_mod']
@@ -30,14 +29,14 @@ class Discipline():
             self.escape_mod = knight_dict['escape_mod']
             
     def attack(self, attacked):
-        if attacked.status == "dead" or self.status == "dead":
+        if attacked.status == "dead":
             print("From attack() - Attacking this character will only make your sword harder to clean because they are already dead! Choose another.")
         else:
             damage1 = random.randint(1,10)
             if self.name == player.name:
                 print ("\nYour damage roll was: " + str(damage1))
             else:
-                print("\n" + str(self.name) + "'s damage roll was: " + str(damage1))
+                print("\n" + str(self.name) + "'s damage roll was: " + str(damage1))                
             damage = (damage1 * self.attack_mod)
             print("With Attack Modifier, {} dealt {} {} points of damage.".format(self.name, attacked.name, damage))
             attacked.health -= damage
@@ -104,10 +103,7 @@ def print_status():
     aragorn_dict = create_stat_dict(Aragorn)
     print("Legolas Stats = " + str(legolas_dict))
     print("Gimly Stats = " + str(gimly_dict))
-    print("Aragorn Stats = " + str(aragorn_dict))
-    
-
-    
+    print("Aragorn Stats = " + str(aragorn_dict))    
 
 #instantiate character instances for gameplay
 Legolas = Elf('Legolas', "Theif", gender = "Male", weakness = True)
@@ -119,10 +115,8 @@ print("\n---------------------------------")
 
 #entry point for program
 if __name__ == '__main__':
-    player = input("Would you like to play as Aragorn, Gimly or Legolas?")
-        
-#player and attacked were resolving to strings instead of one of the
-#congruently named instantiated classes above, so converted string to instance variable.
+    player = input("Would you like to play as Aragorn, Gimly or Legolas?")        
+#convert input strings into valid Class instances.
     while player != Aragorn and player != Legolas and player != Gimly:
         if player in ["Aragorn", "aragorn", "A", "a"]:
             player = Aragorn
@@ -132,11 +126,10 @@ if __name__ == '__main__':
             player = Gimly
         else:
             print("The name you entered is not valid.  Please try again and enter carefully.")
-            player = input("Would you like to play as Aragorn, Gimly or Legolas?")
-        
+            player = input("Would you like to play as Aragorn, Gimly or Legolas?")        
     
     def attack_input():
-        attacked = input("Who would you like to attack? (Choose from Aragorn, Gimly or Legolas.)")
+        attacked = input("-from attack_input()-Who would you like to attack? (Choose from Aragorn, Gimly or Legolas.)")
         return attacked
     attacked = attack_input()
     while attacked != Aragorn and attacked != Gimly and attacked != Legolas:
@@ -148,34 +141,42 @@ if __name__ == '__main__':
             attacked = Gimly
         else:
             print("You entered a name that doesn't belong to any of the people waiting to be attacked : )  Please try again more carefully.")
-            attacked = input("Who would you like to attack? (Choose from Aragorn, Gimly or Legolas.)")
+#            attacked = input("Who would you like to attack? (Choose from Aragorn, Gimly or Legolas.)")
             
-    player.attack(attacked)
-    while attacked.health >= 0:
-        attacked = input("Who would you like to attack? (Choose from 'a' for Aragorn, 'g' for Gimly or 'l' for Legolas.)")
-        if attacked in ["Aragorn", "aragorn", "A", "a"]:
-            attacked = Aragorn
-        if attacked in ["Legolas", "legolas", "L", "l"]:
-            attacked = Legolas
-        if attacked in ["Gimly", "gimly", "G", "g"]:
-            attacked = Gimly
-#make attack on player specified in input statement at program entry point.
-        player.attack(attacked)
+#    player.attack(attacked)
+#    while attacked.health >= 0:
+#        attacked = input("Who would you like to attack? (Choose from 'a' for Aragorn, 'g' for Gimly or 'l' for Legolas.)")
+#        if attacked in ["Aragorn", "aragorn", "A", "a"]:
+ #           attacked = Aragorn
+  #      if attacked in ["Legolas", "legolas", "L", "l"]:
+   #         attacked = Legolas
+    #    if attacked in ["Gimly", "gimly", "G", "g"]:
+     #       attacked = Gimly
+#make attack on player specified in input statement at program entry point unless they are already dead.
+
+        while attacked.health >= 0:
+            attacked = input("Who would you like to attack? (Choose from 'a' for Aragorn, 'g' for Gimly or 'l' for Legolas.)")
+            if attacked in ["Aragorn", "aragorn", "A", "a"]:
+                attacked = Aragorn
+            if attacked in ["Legolas", "legolas", "L", "l"]:
+                attacked = Legolas
+            if attacked in ["Gimly", "gimly", "G", "g"]:
+                attacked = Gimly
+            player.attack(attacked)
         if attacked.status == "dead":
-#            print("From 'Player.attack' - Attacking this character will only make your sword harder to clean "\
-#                 "because they are already dead! Choose another.")
-            print("test 1")
+            continue
         if attacked.health <= 0:
             attacked.status = "dead"
             print("test 2")
             print("You have killed {}".format(attacked.name))
             print("test 3")
-        attacked.attack(player)
-        print("test 4")
-        if player.health <= 0:
-            player.status = "dead"
-            print("You are dead.")
-            break
+        if attacked.status == "alive":
+            attacked.attack(player)
+            print("test 4")
+            if player.health <= 0:
+                player.status = "dead"
+                print("You are dead.")
+                break
         
 
         
