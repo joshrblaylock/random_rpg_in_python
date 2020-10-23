@@ -131,52 +131,42 @@ if __name__ == '__main__':
     def attack_input():
         attacked = input("-from attack_input()-Who would you like to attack? (Choose from Aragorn, Gimly or Legolas.)")
         return attacked
-    attacked = attack_input()
-    while attacked != Aragorn and attacked != Gimly and attacked != Legolas:
-        if attacked in ["Aragorn", "aragorn", "A", "a"]:
-            attacked = Aragorn
-        elif attacked in ["Legolas", "legolas", "L", "l"]:
-             attacked = Legolas
-        elif attacked in ["Gimly", "gimly", "G", "g"]:
-            attacked = Gimly
-        else:
-            print("You entered a name that doesn't belong to any of the people waiting to be attacked : )  Please try again more carefully.")
-#            attacked = input("Who would you like to attack? (Choose from Aragorn, Gimly or Legolas.)")
-            
-#    player.attack(attacked)
-#    while attacked.health >= 0:
-#        attacked = input("Who would you like to attack? (Choose from 'a' for Aragorn, 'g' for Gimly or 'l' for Legolas.)")
-#        if attacked in ["Aragorn", "aragorn", "A", "a"]:
- #           attacked = Aragorn
-  #      if attacked in ["Legolas", "legolas", "L", "l"]:
-   #         attacked = Legolas
-    #    if attacked in ["Gimly", "gimly", "G", "g"]:
-     #       attacked = Gimly
-#make attack on player specified in input statement at program entry point unless they are already dead.
-
-        while attacked.health >= 0:
-            attacked = input("Who would you like to attack? (Choose from 'a' for Aragorn, 'g' for Gimly or 'l' for Legolas.)")
+    
+    while player.health >= 0:
+        attacked = attack_input()
+        while attacked != Aragorn and attacked != Gimly and attacked != Legolas:
             if attacked in ["Aragorn", "aragorn", "A", "a"]:
                 attacked = Aragorn
-            if attacked in ["Legolas", "legolas", "L", "l"]:
+            elif attacked in ["Legolas", "legolas", "L", "l"]:
                 attacked = Legolas
-            if attacked in ["Gimly", "gimly", "G", "g"]:
+            elif attacked in ["Gimly", "gimly", "G", "g"]:
                 attacked = Gimly
-            player.attack(attacked)
-        if attacked.status == "dead":
-            continue
-        if attacked.health <= 0:
-            attacked.status = "dead"
-            print("test 2")
-            print("You have killed {}".format(attacked.name))
-            print("test 3")
-        if attacked.status == "alive":
-            attacked.attack(player)
-            print("test 4")
-            if player.health <= 0:
-                player.status = "dead"
-                print("You are dead.")
+            else:
+                print("You entered a name that doesn't belong to any of the people waiting to be attacked : )  Please try again more carefully.")
                 break
+            if attacked.health >= 0:            
+                player.attack(attacked)
+                if attacked.status == "dead":
+                    continue
+                elif attacked.health <= 0:
+                    attacked.status = "dead"
+                    print("test 2")
+                    print("You have killed {}".format(attacked.name))
+                    print("test 3")
+                elif attacked.status == "alive":
+                    attacked.attack(player)
+                    print("test 4")
+                    if player.health <= 0:
+                        player.status = "dead"
+                        print("You are dead.")
+                        break
+                    break
+                break
+            break
+    
+
+
+
         
 
         
@@ -202,15 +192,4 @@ if __name__ == '__main__':
 
 
 
-
-#old code to validate that attributes are being passed between classes correctly 
-"""print("Legolas' Attack Modifier is: " + str(Legolas.attack_mod) + ", Defend Modifier is: " + str(Legolas.defend_mod) + ", Escape Modifier is: " + str(Legolas.escape_mod) + ", Health: " + str(Legolas.health))
-
-Gimly = Dwarf("Gimly", "Knight")
-print("Gimly's Attack Modifier is: " + str(Gimly.attack_mod) + "\nGimly's Health is: " + str(Gimly.health))
-Aragorn = Human("Aragorn", "Fighter", skin_color = "White")
-print(Gimly.attack_mod)
-print(Aragorn.attack_mod)
-print(Gimly.escape_mod)
-print(Aragorn.discipline_dict['escape_mod'])"""
         
