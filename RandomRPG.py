@@ -136,8 +136,8 @@ if __name__ == '__main__':
         
     
     def attack_input():
-        a = input("Who would you like to attack? (Choose from Aragorn, Gimly or Legolas.)")
-        return a
+        attacked = input("Who would you like to attack? (Choose from Aragorn, Gimly or Legolas.)")
+        return attacked
     attacked = attack_input()
     while attacked != Aragorn and attacked != Gimly and attacked != Legolas:
         if attacked in ["Aragorn", "aragorn", "A", "a"]:
