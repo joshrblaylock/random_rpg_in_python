@@ -32,6 +32,8 @@ class Discipline():
     def attack(self, attacked):
         if attacked.status == "dead":
             print("Attacking this character will only make your sword harder to clean because they are already dead! Choose another.")
+        elif attacked == player and self == player:
+            print("\n!!!!!!!!!! Attacking yourself would break the rules of the matrix, so it will not be allowed !!!!!!!!!!\n")
         else:
             damage1 = random.randint(1,10)
             if self.name == player.name:
@@ -45,8 +47,7 @@ class Discipline():
                 attacked.health = 0
             print("{} now has {} health points\n---------".format(attacked.name, attacked.health))
             return attacked.health
-    
-        
+            
 
 class Character(Discipline):               
     def __init__(self, discipline, weakness):
@@ -60,8 +61,8 @@ class Character(Discipline):
         if weakness == True:
             self.health = self.health / 2
         else:
-            self.health = self.health    
-
+            self.health = self.health
+            
             
 class Human(Character):
     def __init__(self, name, discipline, gender = "Male", skin_color = "Black", weakness = False):
@@ -71,6 +72,7 @@ class Human(Character):
         self.gender = gender
         self.skin_color = skin_color
         self.max_age = 100
+        
 
 class Elf(Character):
     def __init__(self, name, discipline, gender = "Female", skin_color = "White", weakness = True):
@@ -79,6 +81,7 @@ class Elf(Character):
         self.gender = gender
         self.skin_color = skin_color
         self.max_age = 700
+        
      
 class Dwarf(Character):
     def __init__(self, name, discipline, gender = "Male", skin_color = "Grey", weakness = False):
@@ -153,7 +156,7 @@ if __name__ == '__main__':
                     elif attacked.health <= 0:
                         attacked.status = "dead"
                         print("You have killed {}".format(attacked.name))
-                    elif attacked.status == "alive":
+                    elif attacked.status == "alive" and attacked != player:
                         attacked.attack(player)
                         if player.health <= 0:
                             player.status = "dead"
