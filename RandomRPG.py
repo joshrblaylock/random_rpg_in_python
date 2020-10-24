@@ -160,6 +160,9 @@ if __name__ == '__main__':
                             print("You are dead.")
 #if player has died, end game
                             exit()
+                            
+                            
+#TEST FUNCTIONALITY OF GIT WITH DIFF BUT WITHOUT DOC SAVE.
     
 
 
