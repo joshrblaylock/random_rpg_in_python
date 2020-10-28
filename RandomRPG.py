@@ -3,8 +3,8 @@ import random
 
 #dictionaries to allocate character atributes by discipline
 fighter_dict = {'attack_mod': 2, 'defend_mod': 1, 'escape_mod': 0.5}
-theif_dict = {'attack_mod': 0.75, 'defend_mod': .075, 'escape_mod': 2}
-knight_dict = {'attack_mod': 1, 'defend_mod': 2, 'escape_mod': .05}
+theif_dict = {'attack_mod': 1.25, 'defend_mod': .075, 'escape_mod': 2}
+knight_dict = {'attack_mod': 1.5, 'defend_mod': 2, 'escape_mod': .05}
 
 #defining base class assigning for establishing character modifiers and attack function
 class Discipline():
@@ -31,7 +31,7 @@ class Discipline():
             
     def attack(self, attacked):
         if attacked.status == "dead":
-            print("Attacking this character will only make your sword harder to clean because they are already dead! Choose another.")
+            print("\n!!!!!!!!!!!!!!!!!!!\nAttacking this character will only make your sword harder to clean because they are already dead! Choose another.\n!!!!!!!!!!!!!!!!!!!\n")
         elif attacked == player and self == player:
             print("\n!!!!!!!!!! Attacking yourself would break the rules of the matrix, so it will not be allowed !!!!!!!!!!\n")
         else:
@@ -120,9 +120,12 @@ print("\n---------------------------------")
 #entry point for program
 if __name__ == '__main__':
 #get input from user specifying which character our player will attack.
+    killcount = 0
+    
     def attack_input():
         attacked = input("Who would you like to attack? (Choose from Aragorn, Gimly or Legolas.)")
         return attacked
+    
     player = input("Would you like to play as Aragorn, Gimly or Legolas?")        
 #convert input strings into valid Class instances.
     while player != Aragorn and player != Legolas and player != Gimly:
@@ -155,7 +158,11 @@ if __name__ == '__main__':
                         continue
                     elif attacked.health <= 0:
                         attacked.status = "dead"
-                        print("You have killed {}".format(attacked.name))
+                        print("xxxxxxxxxxxxxxxxxxxxxxx\nYou have killed {}!\nxxxxxxxxxxxxxxxxxxxxxxx\n".format(attacked.name))
+                        killcount += 1
+                        if killcount == 2:
+                            print("You have won the battle!")
+                            exit()
                     elif attacked.status == "alive" and attacked != player:
                         attacked.attack(player)
                         if player.health <= 0:
@@ -164,8 +171,9 @@ if __name__ == '__main__':
 #if player has died, end game
                             exit()
                             
-                            
 #TEST FUNCTIONALITY OF GIT WITH DIFF BUT WITHOUT DOC SAVE.
+#Second test of git unexpectedly showing diff results without save.
+#Third test of git unexpectedly showing diff results without save.
     
 
 
