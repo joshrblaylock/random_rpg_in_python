@@ -174,11 +174,7 @@ if __name__ == '__main__':
 #TEST FUNCTIONALITY OF GIT WITH DIFF BUT WITHOUT DOC SAVE.
 #Second test of git unexpectedly showing diff results without save.
 #Third test of git unexpectedly showing diff results without save.
-    
 
-
-
-        
 
         
 
