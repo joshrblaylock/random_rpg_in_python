@@ -1,3 +1,4 @@
+#2nd addition of test notes for git reset --hard vs --mixed vs --soft test
 #random module used for game dynamics like damage dealt
 import random
 
