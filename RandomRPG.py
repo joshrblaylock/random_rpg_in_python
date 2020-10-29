@@ -1,4 +1,3 @@
-#2nd addition of test notes for git reset --hard vs --mixed vs --soft test
 #random module used for game dynamics like damage dealt
 import random
 
@@ -171,10 +170,6 @@ if __name__ == '__main__':
                             print("You are dead.")
 #if player has died, end game
                             exit()
-                            
-#TEST FUNCTIONALITY OF GIT WITH DIFF BUT WITHOUT DOC SAVE.
-#Second test of git unexpectedly showing diff results without save.
-#Third test of git unexpectedly showing diff results without save.
 
 
         
