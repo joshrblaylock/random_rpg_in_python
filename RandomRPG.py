@@ -1,3 +1,4 @@
+#notes introduced to test git merge on altered origin file.
 #random module used for game dynamics like damage dealt
 import random
 
